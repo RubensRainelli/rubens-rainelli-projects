@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250" width="100%" height="100%">
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="#0a0a0f"/>
+  
+  <!-- Cyber Grid -->
+  <path d="M 0,50 L 400,50 M 0,100 L 400,100 M 0,150 L 400,150 M 0,200 L 400,200 M 50,0 L 50,250 M 100,0 L 100,250 M 150,0 L 150,250 M 200,0 L 200,250 M 250,0 L 250,250 M 300,0 L 300,250 M 350,0 L 350,250" stroke="#141424" stroke-width="1"/>
+  
+  <!-- Glowing Effects -->
+  <defs>
+    <filter id="glow-magenta" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <filter id="glow-cyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Glowing background blobs -->
+  <circle cx="200" cy="125" r="70" fill="#ff0055" opacity="0.15" filter="url(#glow-magenta)"/>
+  
+  <!-- Cyber Card Layout -->
+  <g transform="translate(200, 125)">
+    <!-- Main Card Body -->
+    <rect x="-130" y="-80" width="260" height="160" rx="12" fill="#0d0d18" stroke="#ff0055" stroke-width="2" filter="url(#glow-magenta)"/>
+    
+    <!-- Inner Card Cyber Design -->
+    <rect x="-120" y="-70" width="240" height="140" rx="8" fill="none" stroke="#00f0ff" stroke-width="1" opacity="0.6"/>
+    
+    <!-- Chip -->
+    <rect x="-100" y="-45" width="35" height="25" rx="4" fill="none" stroke="#00f0ff" stroke-width="1.5"/>
+    <path d="M -82.5,-45 L -82.5,-20 M -100,-32.5 L -65,-32.5" stroke="#00f0ff" stroke-width="1"/>
+    
+    <!-- Card text / user identity -->
+    <text x="-100" y="5" fill="#00f0ff" font-family="'Courier New', monospace" font-size="10" font-weight="bold" opacity="0.8">USER: RUBENS RAINELLI</text>
+    <text x="-100" y="22" fill="#ff0055" font-family="monospace" font-size="11" font-weight="bold" letter-spacing="1">CARD_ID: 9963-1820-0902</text>
+    
+    <!-- Status Indicator -->
+    <text x="100" y="-45" fill="#39ff14" font-family="monospace" font-size="8" font-weight="bold" text-anchor="end">[ SECURE_LINK ]</text>
+    
+    <!-- QR Code / Barcode representation on the right -->
+    <g transform="translate(60, 0)">
+      <rect x="-25" y="-25" width="50" height="50" fill="#0a0a0f" stroke="#00f0ff" stroke-width="1.5" filter="url(#glow-cyan)"/>
+      <!-- QR Blocks -->
+      <rect x="-20" y="-20" width="10" height="10" fill="#00f0ff"/>
+      <rect x="10" y="-20" width="10" height="10" fill="#00f0ff"/>
+      <rect x="-20" y="10" width="10" height="10" fill="#00f0ff"/>
+      <rect x="-5" y="-5" width="10" height="10" fill="#ff0055" filter="url(#glow-magenta)"/>
+      <rect x="5" y="5" width="10" height="15" fill="#00f0ff"/>
+      <rect x="15" y="15" width="5" height="5" fill="#ff0055"/>
+      <rect x="10" y="0" width="5" height="5" fill="#00f0ff"/>
+      <rect x="0" y="15" width="5" height="5" fill="#00f0ff"/>
+    </g>
+    
+    <!-- Decorative Tech Marks -->
+    <path d="M -130,-50 L -120,-50 M -130,50 L -120,50 M 130,-50 L 120,-50 M 130,50 L 120,50" stroke="#ff0055" stroke-width="2"/>
+  </g>
+
+  <!-- Laser / Scanner line across -->
+  <line x1="40" y1="125" x2="360" y2="125" stroke="#ff0055" stroke-width="1.5" filter="url(#glow-magenta)" opacity="0.8">
+    <animate attributeName="y1" values="60;190;60" dur="4s" repeatCount="indefinite"/>
+    <animate attributeName="y2" values="60;190;60" dur="4s" repeatCount="indefinite"/>
+  </line>
+
+  <!-- Corners -->
+  <path d="M 10,20 L 10,10 L 20,10" fill="none" stroke="#ff0055" stroke-width="2"/>
+  <path d="M 390,20 L 390,10 L 380,10" fill="none" stroke="#ff0055" stroke-width="2"/>
+  <path d="M 10,230 L 10,240 L 20,240" fill="none" stroke="#ff0055" stroke-width="2"/>
+  <path d="M 390,230 L 390,240 L 380,240" fill="none" stroke="#ff0055" stroke-width="2"/>
+</svg>

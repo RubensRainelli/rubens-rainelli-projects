@@ -1,0 +1,92 @@
+[
+  {
+    "id": "pefl-license-spec",
+    "name": {
+      "it": "PEFL License Specification",
+      "en": "PEFL License Specification"
+    },
+    "description": {
+      "it": "Specifica della Licenza PEFL: una licenza personalizzata e focalizzata sul progetto per software e contenuti digitali. Questo repository ospita i testi ufficiali, la documentazione, gli esempi e i badge di licenza.",
+      "en": "PEFL license: a custom, project-focused license for software and digital content. This repository hosts the official texts, docs, examples and license badges."
+    },
+    "image": "images/pefl-license-spec.svg",
+    "code_url": "https://github.com/RubensRainelli/pefl-license-spec",
+    "live_url": "https://rubensrainelli.github.io/pefl-license-spec",
+    "active": true
+  },
+  {
+    "id": "linux-dependency-guide",
+    "name": {
+      "it": "Linux Dependency Guide",
+      "en": "Linux Dependency Guide"
+    },
+    "description": {
+      "it": "Uno strumento di auditing e migrazione Linux offline-first. Scansiona pacchetti nativi (APT, DNF, Pacman, Zypper, Portage, APK), Flatpaks, Snaps, AppImages e container OCI (Docker, Podman, Distrobox) per generare un grafo di dipendenze interattivo 2D con fisica e guide all'aggiornamento personalizzate. Include un motore di diff JSON profondo.",
+      "en": "An offline-first Linux auditing and migration tool. Scans native packages (APT, DNF, Pacman, Zypper, Portage, APK), Flatpaks, Snaps, AppImages, and OCI containers (Docker, Podman, Distrobox) to generate an interactive 2D physics dependency graph and custom upgrade guides. Includes a deep JSON diff engine."
+    },
+    "image": "images/linux-dependency-guide.svg",
+    "code_url": "https://github.com/RubensRainelli/linux-dependency-guide",
+    "live_url": "https://rubensrainelli.github.io/linux-dependency-guide",
+    "active": true
+  },
+  {
+    "id": "MyCard",
+    "name": {
+      "it": "MyCard",
+      "en": "MyCard"
+    },
+    "description": {
+      "it": "Un'applicazione SPA HTML a file singolo, autonoma e offline-first per gestire, scansionare e generare carte fedeltà, codici fiscali e codici QR. Offre rendering ad alto contrasto per scanner di cassa, ridimensionamento dinamico del testo, temi chiaro/scuro e backup/ripristino JSON. Conforme a PEFL v1.0.",
+      "en": "A self-contained, offline-first single-file HTML SPA to manage, scan, and generate loyalty cards, tax codes, and QR codes. Features high-contrast rendering for checkout scanners, dynamic text scaling, light/dark themes, and JSON backup/restore. Complies with PEFL v1.0."
+    },
+    "image": "images/mycard.svg",
+    "code_url": "https://github.com/RubensRainelli/MyCard",
+    "live_url": "https://rubensrainelli.github.io/MyCard",
+    "active": true
+  },
+  {
+    "id": "gemini-cli-reader",
+    "name": {
+      "it": "Gemini CLI Reader",
+      "en": "Gemini CLI Reader"
+    },
+    "description": {
+      "it": "Un visualizzatore locale moderno a file singolo per i log di chat di Gemini CLI. Offre rendering Markdown, visualizzazione della Catena di Pensiero (Chain of Thought), ricerca globale, statistiche ed esportazione. Zero dipendenze, 100% offline e privato utilizzando le File System Access API.",
+      "en": "A modern, single-file local viewer for Gemini CLI chat logs. Features Markdown rendering, Chain of Thought visualization, global search, stats, and export. Zero dependencies, 100% offline and private using the File System Access API."
+    },
+    "image": "images/gemini-cli-reader.svg",
+    "code_url": "https://github.com/RubensRainelli/gemini-cli-reader",
+    "live_url": "https://rubensrainelli.github.io/gemini-cli-reader",
+    "active": true
+  },
+  {
+    "id": "AEM-Enhancer",
+    "name": {
+      "it": "AEM Enhancer",
+      "en": "AEM Enhancer"
+    },
+    "description": {
+      "it": "Estensione gratuita per browser progettata per aumentare la produttività degli utenti di Adobe Experience Manager (AEM). Migliora l'interfaccia di AEM aggiungendo utili funzionalità tramite menu contestuale 'tasto destro', come copia rapida dei percorsi dei componenti, CRXDE Lite e altro.",
+      "en": "A browser extension designed to increase productivity for Adobe Experience Manager (AEM) users. Enhances the AEM interface by adding helpful context-menu 'right-click' actions, such as copying component paths, opening CRXDE Lite, and more."
+    },
+    "image": "images/aem-enhancer.svg",
+    "code_url": "https://github.com/RubensRainelli/AEM-Enhancer",
+    "live_url": null,
+    "active": true
+  },
+  {
+    "id": "adobe_case_sensitive_volumes",
+    "name": {
+      "it": "Adobe Case-Sensitive Volumes Workaround",
+      "en": "Adobe Case-Sensitive Volumes Workaround"
+    },
+    "description": {
+      "it": "Soluzione tecnica e set di istruzioni per macOS che permette di installare ed eseguire le applicazioni Adobe Creative Cloud su partizioni APFS/HFS+ case-sensitive tramite l'intercettazione a basso livello delle chiamate di sistema che controllano il tipo di volume.",
+      "en": "A technical workaround and set of instructions for macOS to install and run Adobe Creative Cloud applications on case-sensitive APFS/HFS+ file systems by hijacking low-level file system volume checks."
+    },
+    "image": "images/adobe-case-sensitive-volumes.svg",
+    "code_url": "https://github.com/RubensRainelli/adobe_case_sensitive_volumes",
+    "live_url": null,
+    "active": false
+  }
+]

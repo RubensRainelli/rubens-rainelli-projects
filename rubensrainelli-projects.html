@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Rubens Rainelli - Projects Directory SPA. A lightweight, cyberpunk-styled index of public repositories and tools.">
+  <title>Rubens Rainelli // Cybernet Project index</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/svg+xml" href="images/mycard.svg">
+</head>
+<body>
+  <!-- CRT Flicker Layer -->
+  <div class="crt-flicker"></div>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header>
+      <div class="header-top">
+        <div class="system-status">
+          <span data-translate="sys_status">SYS_STATUS: ACTIVE</span>
+        </div>
+        <div class="language-selector">
+          <button class="lang-btn" id="btn-lang-en" onclick="changeLanguage('en')">EN</button>
+          <button class="lang-btn" id="btn-lang-it" onclick="changeLanguage('it')">IT</button>
+        </div>
+      </div>
+      <div class="logo-container">
+        <h1 class="title-glitch" data-text="PORTFOLIO // INDEX" data-translate="title">PORTFOLIO // INDEX</h1>
+      </div>
+    </header>
+
+    <!-- Controls Dashboard (Search & Filters) -->
+    <section class="controls-dashboard">
+      <div class="search-wrapper">
+        <span class="search-icon">⌕</span>
+        <input type="text" id="search-input" class="search-input" placeholder="Search projects..." data-translate-placeholder="search_placeholder" oninput="handleSearch()">
+      </div>
+      <div class="filter-group">
+        <button class="filter-btn active" id="filter-all" onclick="setFilter('all')" data-translate="filter_all">ALL</button>
+        <button class="filter-btn" id="filter-active" onclick="setFilter('active')" data-translate="filter_active">ACTIVE</button>
+        <button class="filter-btn" id="filter-dismissed" onclick="setFilter('dismissed')" data-translate="filter_dismissed">DISMISSED</button>
+      </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <main>
+      <div class="projects-grid" id="projects-container">
+        <!-- Rendered dynamically via JavaScript -->
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-left">
+        <div class="footer-pulse"></div>
+        <span>RUBENS RAINELLI // PROJECTS DATABASE v1.0.0</span>
+      </div>
+      <div class="footer-right">
+        <a href="https://github.com/RubensRainelli" target="_blank" rel="noopener">GITHUB Profile</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Multilingual Modal Overlay -->
+  <div class="modal-overlay" id="lang-modal">
+    <div class="modal-window">
+      <div class="modal-strip"></div>
+      <h2 class="modal-title">Select Language / Seleziona Lingua</h2>
+      <p class="modal-text">
+        Choose your preferred language to browse the database. This choice will be saved in your system profile.<br><br>
+        Scegli la lingua preferita per sfogliare il database. La scelta verrà salvata nel profilo di sistema.
+      </p>
+      <div class="modal-options">
+        <button class="modal-btn" onclick="selectInitialLanguage('en')">[ ENGLISH ]</button>
+        <button class="modal-btn" onclick="selectInitialLanguage('it')">[ ITALIANO ]</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- App Script -->
+  <script>
+    // Global State
+    let currentLang = 'en';
+    let currentFilter = 'all';
+    let searchQuery = '';
+    let projectsData = [];
+
+    // Translations Dictionary
+    const translations = {
+      en: {
+        sys_status: "SYS_STATUS: ONLINE",
+        title: "PORTFOLIO // INDEX",
+        search_placeholder: "Search projects...",
+        filter_all: "ALL",
+        filter_active: "ACTIVE",
+        filter_dismissed: "DECOMMISSIONED",
+        badge_active: "ONLINE",
+        badge_dismissed: "DECOM",
+        btn_code: "SOURCE CODE",
+        btn_live: "TRY LIVE",
+        btn_na: "N/A",
+        no_results_title: "NO DATA FOUND",
+        no_results_text: "No projects match your current query. Try adjusting your search filters.",
+        toast_decom: "Notice: This project is decommissioned/inactive."
+      },
+      it: {
+        sys_status: "SYS_STATUS: ATTIVO",
+        title: "PORTFOLIO // INDICE",
+        search_placeholder: "Cerca progetti...",
+        filter_all: "TUTTI",
+        filter_active: "ATTIVI",
+        filter_dismissed: "DISMESSI",
+        badge_active: "ATTIVO",
+        badge_dismissed: "DISMESSO",
+        btn_code: "CODICE SORGENTE",
+        btn_live: "PROVALO LIVE",
+        btn_na: "N/A",
+        no_results_title: "NESSUN DATO TROVATO",
+        no_results_text: "Nessun progetto corrisponde ai filtri di ricerca. Prova a modificare i criteri.",
+        toast_decom: "Nota: Questo progetto è dismesso o non più attivo."
+      }
+    };
+
+    // Detect browser language or stored preference
+    function getPreferredLanguage() {
+      const stored = localStorage.getItem('preferred-language');
+      if (stored === 'it' || stored === 'en') {
+        return stored;
+      }
+      
+      const browserLang = navigator.language || navigator.userLanguage;
+      if (browserLang) {
+        if (browserLang.startsWith('it')) return 'it';
+        if (browserLang.startsWith('en')) return 'en';
+      }
+      return null;
+    }
+
+    // Set Language UI & state
+    function applyTranslations() {
+      // Set html lang attribute
+      document.documentElement.lang = currentLang;
+
+      // Update elements with data-translate attribute
+      document.querySelectorAll('[data-translate]').forEach(elem => {
+        const key = elem.getAttribute('data-translate');
+        if (translations[currentLang][key]) {
+          elem.textContent = translations[currentLang][key];
+          // Special case for title glitch data-text
+          if (elem.classList.contains('title-glitch')) {
+            elem.setAttribute('data-text', translations[currentLang][key]);
+          }
+        }
+      });
+
+      // Update placeholders
+      document.querySelectorAll('[data-translate-placeholder]').forEach(elem => {
+        const key = elem.getAttribute('data-translate-placeholder');
+        if (translations[currentLang][key]) {
+          elem.placeholder = translations[currentLang][key];
+        }
+      });
+
+      // Update Lang Buttons
+      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+      const activeLangBtn = document.getElementById(`btn-lang-${currentLang}`);
+      if (activeLangBtn) activeLangBtn.classList.add('active');
+    }
+
+    // Main Language Switcher
+    function changeLanguage(lang) {
+      if (lang === currentLang) return;
+      currentLang = lang;
+      localStorage.setItem('preferred-language', lang);
+      applyTranslations();
+      renderProjects();
+    }
+
+    // Initial language selection from modal
+    function selectInitialLanguage(lang) {
+      currentLang = lang;
+      localStorage.setItem('preferred-language', lang);
+      document.getElementById('lang-modal').classList.remove('active');
+      applyTranslations();
+      renderProjects();
+    }
+
+    // Filter selector
+    function setFilter(filter) {
+      if (filter === currentFilter) return;
+      currentFilter = filter;
+      
+      document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(`filter-${filter}`).classList.add('active');
+      
+      renderProjects();
+    }
+
+    // Search input handler
+    function handleSearch() {
+      searchQuery = document.getElementById('search-input').value.toLowerCase().trim();
+      renderProjects();
+    }
+
+    // Render engine
+    function renderProjects() {
+      const container = document.getElementById('projects-container');
+      container.innerHTML = '';
+
+      // Filter and Search logic
+      const filtered = projectsData.filter(proj => {
+        // Filter by Active status
+        if (currentFilter === 'active' && !proj.active) return false;
+        if (currentFilter === 'dismissed' && proj.active) return false;
+
+        // Filter by Search Query
+        if (searchQuery) {
+          const name = (proj.name[currentLang] || proj.name['en']).toLowerCase();
+          const desc = (proj.description[currentLang] || proj.description['en']).toLowerCase();
+          const id = proj.id.toLowerCase();
+          return name.includes(searchQuery) || desc.includes(searchQuery) || id.includes(searchQuery);
+        }
+
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="no-results">
+            <div class="no-results-icon">∅</div>
+            <h3 class="no-results-title">${translations[currentLang].no_results_title}</h3>
+            <p class="no-results-text">${translations[currentLang].no_results_text}</p>
+          </div>
+        `;
+        return;
+      }
+
+      // Generate cards
+      filtered.forEach((proj, idx) => {
+        const name = proj.name[currentLang] || proj.name['en'];
+        const desc = proj.description[currentLang] || proj.description['en'];
+        const numStr = String(idx + 1).padStart(3, '0');
+        
+        const card = document.createElement('article');
+        card.className = `project-card ${proj.active ? '' : 'decommissioned'}`;
+        
+        const badgeClass = proj.active ? 'active-status' : 'dismissed-status';
+        const badgeLabel = proj.active ? translations[currentLang].badge_active : translations[currentLang].badge_dismissed;
+        
+        const liveBtnClass = proj.live_url ? 'btn-live' : 'btn-live btn-disabled';
+        const liveBtnText = proj.live_url ? translations[currentLang].btn_live : translations[currentLang].btn_na;
+        const liveAttr = proj.live_url ? `href="${proj.live_url}" target="_blank" rel="noopener"` : '';
+
+        card.innerHTML = `
+          <div class="card-header">
+            <span class="proj-id">INDEX_ID: ${numStr}</span>
+            <span class="status-badge ${badgeClass}">${badgeLabel}</span>
+          </div>
+          <div class="card-image-wrapper">
+            <img src="${proj.image}" alt="${name}" onerror="this.src='images/mycard.svg'">
+          </div>
+          <div class="card-body">
+            <h3 class="proj-title">${name}</h3>
+            <p class="proj-description">${desc}</p>
+            <div class="card-actions">
+              <a href="${proj.code_url}" class="action-btn btn-code" target="_blank" rel="noopener">
+                ${translations[currentLang].btn_code}
+              </a>
+              <a class="action-btn ${liveBtnClass}" ${liveAttr}>
+                ${liveBtnText}
+              </a>
+            </div>
+          </div>
+        `;
+        
+        container.appendChild(card);
+      });
+    }
+
+    // App Initialization
+    window.addEventListener('DOMContentLoaded', () => {
+      // 1. Detect language
+      const detectedLang = getPreferredLanguage();
+      
+      if (detectedLang) {
+        currentLang = detectedLang;
+        document.getElementById('lang-modal').classList.remove('active');
+        applyTranslations();
+      } else {
+        // Show selection modal overlay
+        document.getElementById('lang-modal').classList.add('active');
+      }
+
+      // 2. Fetch projects.json
+      fetch('projects.json')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not OK');
+          }
+          return response.json();
+        })
+        .then(data => {
+          projectsData = data;
+          renderProjects();
+        })
+        .catch(error => {
+          console.error('Failed to load projects data:', error);
+          const container = document.getElementById('projects-container');
+          container.innerHTML = `
+            <div class="no-results" style="border-color: var(--neon-red);">
+              <div class="no-results-icon" style="color: var(--neon-red);">☢</div>
+              <h3 class="no-results-title">DATABASE ERROR</h3>
+              <p class="no-results-text" style="color: var(--neon-red);">
+                Failed to connect to target data core. projects.json might be missing or corrupted.
+              </p>
+            </div>
+          `;
+        });
+    });
+  </script>
+</body>
+</html>
