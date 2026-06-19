@@ -661,12 +661,41 @@ footer {
   border: 2px solid var(--neon-yellow);
   box-shadow: 0 0 30px rgba(254, 254, 0, 0.25);
   width: 90%;
-  max-width: 450px;
+  max-width: 550px;
   padding: 30px;
   position: relative;
   clip-path: polygon(0 0, 100% 0, 100% 90%, 90% 100%, 0 100%);
   transform: scale(0.9);
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.license-box {
+  background: rgba(5, 5, 8, 0.85);
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  padding: 12px;
+  height: 200px;
+  overflow-y: auto;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--text-cyan);
+  margin-bottom: 20px;
+  text-align: left;
+  white-space: pre-wrap;
+  scrollbar-color: var(--neon-cyan) rgba(0, 0, 0, 0.3);
+  scrollbar-width: thin;
+}
+
+.license-box::-webkit-scrollbar {
+  width: 6px;
+}
+
+.license-box::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.license-box::-webkit-scrollbar-thumb {
+  background: var(--neon-cyan);
 }
 
 .modal-overlay.active .modal-window {

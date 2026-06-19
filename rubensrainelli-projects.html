@@ -61,26 +61,139 @@
     </footer>
   </div>
 
-  <!-- Multilingual Modal Overlay -->
+  <!-- EULA & Multilingual Modal Overlay -->
   <div class="modal-overlay" id="lang-modal">
     <div class="modal-window">
       <div class="modal-strip"></div>
-      <h2 class="modal-title">Select Language / Seleziona Lingua</h2>
-      <p class="modal-text">
-        Choose your preferred language to browse the database. This choice will be saved in your system profile.<br><br>
-        Scegli la lingua preferita per sfogliare il database. La scelta verrà salvata nel profilo di sistema.
+      
+      <!-- Modal Header with Language Toggle -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid rgba(0, 240, 255, 0.2); padding-bottom: 10px; margin-top: 10px;">
+        <h2 class="modal-title" style="margin: 0; text-align: left; font-size: 15px;" id="modal-title-text" data-translate="modal_title">PEFL LICENSE AGREEMENT</h2>
+        <div style="display: flex; gap: 5px;">
+          <button class="lang-btn" style="padding: 3px 8px; font-size: 10px;" id="modal-btn-en" onclick="setModalLanguage('en')">EN</button>
+          <button class="lang-btn" style="padding: 3px 8px; font-size: 10px;" id="modal-btn-it" onclick="setModalLanguage('it')">IT</button>
+        </div>
+      </div>
+      
+      <p class="modal-text" id="modal-body-text" style="font-size: 11px; margin-bottom: 15px; text-align: left;" data-translate="modal_text">
+        This projects index is governed by the Personal and Educational Free License (PEFL v1.0). Free for individuals, schools, and non-profits. Corporate/commercial use requires a written authorization and a fee.
       </p>
+      
+      <!-- License Scrollbox -->
+      <div class="license-box" id="modal-license-text">
+        <!-- Loaded dynamically -->
+      </div>
+      
       <div class="modal-options">
-        <button class="modal-btn" onclick="selectInitialLanguage('en')">[ ENGLISH ]</button>
-        <button class="modal-btn" onclick="selectInitialLanguage('it')">[ ITALIANO ]</button>
+        <button class="modal-btn" onclick="acceptLicenseAndEnter()" id="modal-accept-btn" data-translate="btn_accept">[ ACCEPT TERMS & ENTER ]</button>
       </div>
     </div>
   </div>
 
   <!-- App Script -->
   <script>
+    // PEFL License Texts
+    const licenseTextEN = `Personal and Educational Free License
+PEF License (PEFL)
+Version 1.0
+Date: 2026-05-26
+Official Specification Repository: https://github.com/RubensRainelli/pefl-license-spec
+
+This license also governs its own text, its own distribution, and its own use; therefore, the license itself cannot be used in a corporate environment without written authorization and payment of the corresponding fee.
+
+Copyright (c) 2026 Rubens Rainelli
+
+Author's Contact Details:
+  - Email: rubens@rainelli.it
+  - GitHub: https://github.com/RubensRainelli/
+  - Phone: (+39) 342 811 5882
+
+1. Definitions.
+"Personal Use" refers to personal, domestic, educational, academic use, or use by schools, universities, and Non-Profit Organizations / Third Sector Entities, without profit motives or direct support for corporate activities.
+Places of worship and religious organizations are explicitly excluded from Personal Use and are considered equivalent to Corporate Use.
+"Corporate Use" refers to any use of the Software in business, professional, productive, or organizational contexts, including servers, PCs, notebooks, workstations, infrastructures, testing, staging, or production environments managed by corporations, companies, religious entities, or equivalent subjects.
+
+2. Permissions.
+Anyone is allowed to use, copy, modify, and redistribute the Software free of charge for Personal Use.
+Modifying the Software is permitted for Personal Use, provided that the author's name, reference to this license, and all original copyright notices remain visible.
+The Software and this license may be hosted, archived, and distributed on any device or medium of any nature.
+
+3. Attribution and Approval Obligations.
+Every copy, distribution, or derivative work of the Software must retain the author's name, Rubens Rainelli, and cannot remove, obscure, or replace the original attribution.
+This license must always be visible, in the foreground, at every launch of the Software (or at least once every 7 days if a local persistence mechanism is available to securely store the acceptance date), and must be explicitly approved by the user before any use.
+Every redistribution must include the license in its current form, without altering the text, version, or conditions.
+
+4. Prohibition of Corporate Use without Authorization.
+Any Corporate Use of the Software, or any use of the Software on corporate-owned machines or machines not intended for exclusive personal use, is prohibited except with written authorization and payment of the corresponding usage fee agreed upon with the author.
+In the absence of such authorization, use in business environments is prohibited even if the Software is not sold or distributed to third parties.
+
+5. Redistribution.
+Anyone may redistribute the Software, with or without modifications, provided that the terms of this license are respected, including retaining the attribution and retaining the current license.
+Distributing the Software under a different license is prohibited without the author's written consent.
+
+6. No Warranty.
+The Software is provided "as is", without warranty of any kind, express or implied.
+The author is not liable for data loss, malfunctions, incompatibility, interruptions, or any other effects deriving from the use of the Software.
+
+7. Liability.
+The use of the Software is at the sole responsibility of the user.
+Any damage, loss, or consequence resulting from the use, abuse, or interpretation of the Software is borne by the user.
+
+8. Acceptance.
+Using, copying, modifying, or redistributing the Software implies full acceptance of the terms of this license.`;
+
+    const licenseTextIT = `Personal and Educational Free License
+PEF License (PEFL)
+Versione 1.0
+Data: 2026-05-26
+Repository Ufficiale della Specifica: https://github.com/RubensRainelli/pefl-license-spec
+
+La presente licenza disciplina anche il proprio testo, la propria distribuzione e il proprio utilizzo; pertanto, la licenza stessa non può essere impiegata in ambito aziendale senza autorizzazione scritta e pagamento della relativa fee.
+
+Copyright (c) 2026 Rubens Rainelli
+
+Contatti dell'Autore:
+  - Email: rubens@rainelli.it
+  - GitHub: https://github.com/RubensRainelli/
+  - Telefono: (+39) 342 811 5882
+
+1. Definizioni.
+Per "Uso Privato" si intende l'uso personale, domestico, didattico, accademico o da parte di scuole, università ed Enti del Terzo Settore, senza finalità di profitto o di supporto diretto ad attività aziendali.
+Sono esclusi dall'Uso Privato gli enti di culto e le organizzazioni religiose, che sono considerati equivalenti a Uso Aziendale.
+Per "Uso Aziendale" si intende qualsiasi uso del Software in contesti business, professionali, produttivi o organizzativi, inclusi server, PC, notebook, workstation, infrastrutture, ambienti di test, staging o produzione gestiti da aziende, enti religiosi o soggetti equivalenti.
+
+2. Permessi.
+È consentito a chiunque usare, copiare, modificare e ridistribuire il Software gratuitamente per Uso Privato.
+È consentito modificare il Software per Uso Privato, purché restino visibili il nome dell'autore, il riferimento alla presente licenza e tutti gli avvisi di copyright originali.
+Il Software e la presente licenza possono essere ospitati, archiviati e distribuiti su qualsiasi dispositivo o supporto di qualunque natura.
+
+3. Obblighi di attribuzione e approvazione.
+Ogni copia, distribuzione o derivato del Software deve mantenere il nome dell'autore, Rubens Rainelli, e non può rimuovere, oscurare o sostituire l'attribuzione originaria.
+La presente licenza deve essere sempre visibile, in primo piano, ad ogni avvio del Software (o almeno una volta ogni 7 giorni qualora sia disponibile un meccanismo di persistenza locale per memorizzare in modo sicuro la data di accettazione), e deve essere esplicitamente approvata dall'utente prima di ogni utilizzo.
+Ogni redistribuzione deve includere la licenza nella sua forma attuale, senza alterarne il testo, la versione o le condizioni.
+
+4. Divieto d'uso aziendale senza autorizzazione.
+Qualsiasi Uso Aziendale del Software, o qualsiasi utilizzo del Software su macchine aziendali o comunque non destinate a esclusivo uso privato, è vietato salvo autorizzazione scritta e pagamento della relativa usage fee concordata con l'autore.
+In assenza di tale autorizzazione, l'uso in ambienti business è proibito anche se il Software non viene venduto o distribuito a terzi.
+
+5. Redistribuzione.
+Chiunque può ridistribuire il Software, con o senza modifiche, purché siano rispettati i termini della presente licenza, incluso il mantenimento dell'attribuzione e il mantenimento della licenza attuale.
+È vietato distribuire il Software con una licenza diversa da quella presente, salvo consenso scritto dell'autore.
+
+6. Nessuna garanzia.
+Il Software è fornito "così com'è", senza alcuna garanzia di alcun tipo, espressa o implicita.
+L'autore non risponde di perdite di dati, malfunzionamenti, incompatibilità, interruzioni o altri effetti derivanti dall'uso del Software.
+
+7. Responsabilità.
+L'uso del Software avviene sotto esclusiva responsabilità di chi lo utilizza.
+Qualsiasi danno, perdita o conseguenza derivante dall'uso, dall'abuso o dall'interpretazione del Software è a carico dell'utente.
+
+8. Accettazione.
+L'uso, la copia, la modifica o la redistribuzione del Software implica l'accettazione integrale dei termini della presente licenza.`;
+
     // Global State
     let currentLang = 'en';
+    let modalLang = 'en';
     let currentFilter = 'all';
     let searchQuery = '';
     let projectsData = [];
@@ -101,7 +214,10 @@
         btn_na: "N/A",
         no_results_title: "NO DATA FOUND",
         no_results_text: "No projects match your current query. Try adjusting your search filters.",
-        toast_decom: "Notice: This project is decommissioned/inactive."
+        toast_decom: "Notice: This project is decommissioned/inactive.",
+        modal_title: "PEFL LICENSE AGREEMENT",
+        modal_text: "This projects index is governed by the Personal and Educational Free License (PEFL v1.0). Free for individuals, schools, and non-profits. Corporate/commercial use requires a written authorization and a fee.",
+        btn_accept: "[ ACCEPT TERMS & ENTER ]"
       },
       it: {
         sys_status: "SYS_STATUS: ATTIVO",
@@ -117,7 +233,10 @@
         btn_na: "N/A",
         no_results_title: "NESSUN DATO TROVATO",
         no_results_text: "Nessun progetto corrisponde ai filtri di ricerca. Prova a modificare i criteri.",
-        toast_decom: "Nota: Questo progetto è dismesso o non più attivo."
+        toast_decom: "Nota: Questo progetto è dismesso o non più attivo.",
+        modal_title: "ACCETTAZIONE LICENZA PEFL",
+        modal_text: "Questo indice dei progetti è regolato dalla licenza Personal and Educational Free License (PEFL v1.0). Gratuito per uso personale, didattico e non profit. L'uso aziendale/commerciale richiede autorizzazione scritta e pagamento di una fee.",
+        btn_accept: "[ ACCETTA I TERMINI ED ENTRA ]"
       }
     };
 
@@ -176,10 +295,31 @@
       renderProjects();
     }
 
-    // Initial language selection from modal
-    function selectInitialLanguage(lang) {
-      currentLang = lang;
-      localStorage.setItem('preferred-language', lang);
+    // Set license details inside modal based on selection
+    function setModalLanguage(lang) {
+      modalLang = lang;
+      
+      // Update modal lang toggles
+      document.getElementById('modal-btn-en').classList.remove('active');
+      document.getElementById('modal-btn-it').classList.remove('active');
+      document.getElementById(`modal-btn-${lang}`).classList.add('active');
+      
+      // Update EULA texts in the modal
+      document.getElementById('modal-title-text').textContent = translations[lang].modal_title;
+      document.getElementById('modal-body-text').textContent = translations[lang].modal_text;
+      document.getElementById('modal-accept-btn').textContent = translations[lang].btn_accept;
+      
+      // Update license text body
+      document.getElementById('modal-license-text').textContent = lang === 'it' ? licenseTextIT : licenseTextEN;
+    }
+
+    // Accept EULA license and close overlay
+    function acceptLicenseAndEnter() {
+      // Save acceptance state and time (re-verify in 7 days as allowed by Clause 3)
+      localStorage.setItem('pefl-accepted-date', Date.now().toString());
+      localStorage.setItem('preferred-language', modalLang);
+      
+      currentLang = modalLang;
       document.getElementById('lang-modal').classList.remove('active');
       applyTranslations();
       renderProjects();
@@ -279,15 +419,20 @@
 
     // App Initialization
     window.addEventListener('DOMContentLoaded', () => {
-      // 1. Detect language
-      const detectedLang = getPreferredLanguage();
+      // 1. Verify EULA Status (Clause 3 compliance - re-verify every 7 days)
+      const acceptedDate = localStorage.getItem('pefl-accepted-date');
+      const isEulaValid = acceptedDate && (Date.now() - parseInt(acceptedDate)) < 7 * 24 * 60 * 60 * 1000;
       
-      if (detectedLang) {
-        currentLang = detectedLang;
+      const lang = getPreferredLanguage() || 'en';
+      currentLang = lang;
+      
+      if (isEulaValid) {
+        // Hide EULA modal and load app directly
         document.getElementById('lang-modal').classList.remove('active');
         applyTranslations();
       } else {
-        // Show selection modal overlay
+        // Show EULA modal overlay
+        setModalLanguage(lang);
         document.getElementById('lang-modal').classList.add('active');
       }
 
