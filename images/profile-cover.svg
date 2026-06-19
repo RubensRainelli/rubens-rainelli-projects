@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="100%" height="100%">
+  <defs>
+    <!-- Cyberpunk neon glow filters -->
+    <filter id="glow-cyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <filter id="glow-magenta" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    
+    <!-- Octagonal Clipping Path for Avatar -->
+    <clipPath id="avatar-clip">
+      <polygon points="40,10 260,10 290,40 290,260 260,290 40,290 10,260 10,40" />
+    </clipPath>
+  </defs>
+
+  <!-- Outer background grid pattern for tech look (rendered on top of image) -->
+  <path d="M 0,30 L 300,30 M 0,60 L 300,60 M 0,90 L 300,90 M 0,120 L 300,120 M 0,150 L 300,150 M 0,180 L 300,180 M 0,210 L 300,210 M 0,240 L 300,240 M 0,270 L 300,270 M 30,0 L 30,300 M 60,0 L 60,300 M 90,0 L 90,300 M 120,0 L 120,300 M 150,0 L 150,300 M 180,0 L 180,300 M 210,0 L 210,300 M 240,0 L 240,300 M 270,0 L 270,300" stroke="#12121e" stroke-width="0.75" fill="none" opacity="0.5" />
+
+  <!-- Outer glowing magenta card/border backing -->
+  <polygon points="38,8 262,8 292,38 292,262 262,292 38,292 8,262 8,38" fill="none" stroke="#ff0055" stroke-width="2" filter="url(#glow-magenta)"/>
+
+  <!-- Inner glowing cyan border -->
+  <polygon points="40,10 260,10 290,40 290,260 260,290 40,290 10,260 10,40" fill="none" stroke="#00f0ff" stroke-width="1.5" filter="url(#glow-cyan)"/>
+
+  <!-- Overlay scanlines over the photo -->
+  <g clip-path="url(#avatar-clip)" opacity="0.12" pointer-events="none">
+    <path d="M 0,15 L 300,15 M 0,25 L 300,25 M 0,35 L 300,35 M 0,45 L 300,45 M 0,55 L 300,55 M 0,65 L 300,65 M 0,75 L 300,75 M 0,85 L 300,85 M 0,95 L 300,95 M 0,105 L 300,105 M 0,115 L 300,115 M 0,125 L 300,125 M 0,135 L 300,135 M 0,145 L 300,145 M 0,155 L 300,155 M 0,165 L 300,165 M 0,175 L 300,175 M 0,185 L 300,185 M 0,195 L 300,195 M 0,205 L 300,205 M 0,215 L 300,215 M 0,225 L 300,225 M 0,235 L 300,235 M 0,245 L 300,245 M 0,255 L 300,255 M 0,265 L 300,265 M 0,275 L 300,275 M 0,285 L 300,285" stroke="#00f0ff" stroke-width="1.25"/>
+  </g>
+
+  <!-- Technical Corner Brackets -->
+  <path d="M 30,22 L 22,22 L 22,30" fill="none" stroke="#00f0ff" stroke-width="2.5"/>
+  <path d="M 270,22 L 278,22 L 278,30" fill="none" stroke="#00f0ff" stroke-width="2.5"/>
+  <path d="M 30,278 L 22,278 L 22,270" fill="none" stroke="#00f0ff" stroke-width="2.5"/>
+  <path d="M 270,278 L 278,278 L 278,270" fill="none" stroke="#00f0ff" stroke-width="2.5"/>
+
+  <!-- Tech Accent Lines (Circuit Traces) -->
+  <path d="M 50,15 L 120,15 L 130,25" fill="none" stroke="#ff0055" stroke-width="1.5" opacity="0.6"/>
+  <circle cx="50" cy="15" r="2" fill="#ff0055"/>
+  <circle cx="130" cy="25" r="2" fill="#ff0055"/>
+
+  <path d="M 250,285 L 180,285 L 170,275" fill="none" stroke="#00f0ff" stroke-width="1.5" opacity="0.6"/>
+  <circle cx="250" cy="285" r="2" fill="#00f0ff"/>
+  <circle cx="170" cy="275" r="2" fill="#00f0ff"/>
+
+  <!-- Monospaced Data Overlays -->
+  <rect x="35" y="260" width="115" height="18" fill="rgba(0, 240, 255, 0.2)" stroke="#00f0ff" stroke-width="1" />
+  <text x="40" y="272" fill="#00f0ff" font-family="'Share Tech Mono', monospace" font-size="9" letter-spacing="1">ID: OPERATOR_01</text>
+  
+  <rect x="180" y="22" width="85" height="15" fill="rgba(255, 0, 85, 0.2)" stroke="#ff0055" stroke-width="1" />
+  <text x="185" y="32" fill="#ff0055" font-family="'Share Tech Mono', monospace" font-size="8" letter-spacing="1">SYS_AUTH: OK</text>
+</svg>

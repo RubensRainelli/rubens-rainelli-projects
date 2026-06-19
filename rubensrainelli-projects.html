@@ -35,6 +35,7 @@
       <div class="header-top">
         <div class="system-status">
           <span data-translate="sys_status">SYS_STATUS: ACTIVE</span>
+          <button class="contact-trigger-btn" onclick="openContactModal()" data-translate="btn_contact_me">[ CONTACT ME ]</button>
         </div>
         <div class="language-selector">
           <button class="lang-btn" id="btn-lang-en" onclick="changeLanguage('en')">EN</button>
@@ -76,6 +77,61 @@
         <a href="https://github.com/RubensRainelli" target="_blank" rel="noopener">GITHUB Profile</a>
       </div>
     </footer>
+  </div>
+
+  <!-- Contact Modal Overlay -->
+  <div class="modal-overlay" id="contact-modal">
+    <div class="modal-window contact-window">
+      <div class="modal-strip"></div>
+      
+      <!-- Modal Header -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid rgba(0, 240, 255, 0.2); padding-bottom: 10px; margin-top: 10px;">
+        <h2 class="modal-title" style="margin: 0; text-align: left; font-size: 15px;" data-translate="contact_modal_title">SECURE COMMUNICATIONS CHANNEL</h2>
+        <span class="modal-close-x" onclick="closeContactModal()">&times;</span>
+      </div>
+      
+      <p class="modal-text" style="font-size: 11px; margin-bottom: 20px; text-align: left;" data-translate="contact_modal_subtitle">
+        DIRECT LINK ESTABLISHED
+      </p>
+      
+      <div class="contact-layout">
+        <!-- Profile picture SVG frame -->
+        <div class="contact-avatar-container">
+          <div class="profile-wrapper">
+            <img id="contact-avatar-img" src="images/RubensRainelli-Cyberpunk.png" class="profile-image" alt="Rubens Rainelli">
+            <object data="images/profile-cover.svg" type="image/svg+xml" class="profile-avatar-overlay"></object>
+          </div>
+          <button class="avatar-toggle-btn" onclick="toggleAvatarMode()" data-translate="btn_toggle_avatar">[ SWAP SCANNER MODE ]</button>
+        </div>
+        <!-- Contact list -->
+        <div class="contact-info-list">
+          <a href="mailto:rubens@rainelli.it" class="contact-link email-link">
+            <span class="link-label" data-translate="contact_email_label">EMAIL</span>
+            <span class="link-val">rubens@rainelli.it</span>
+          </a>
+          <a href="https://t.me/RubensRainelli" target="_blank" rel="noopener" class="contact-link telegram-link">
+            <span class="link-label" data-translate="contact_telegram_label">TELEGRAM</span>
+            <span class="link-val">@RubensRainelli</span>
+          </a>
+          <a href="tel:+393428115882" class="contact-link phone-link">
+            <span class="link-label" data-translate="contact_phone_label">TELECOM</span>
+            <span class="link-val">+39 342 811 5882</span>
+          </a>
+          <a href="https://github.com/RubensRainelli" target="_blank" rel="noopener" class="contact-link github-link">
+            <span class="link-label" data-translate="contact_github_label">GITHUB</span>
+            <span class="link-val">github.com/RubensRainelli</span>
+          </a>
+          <a href="https://www.linkedin.com/in/rubensrainelli" target="_blank" rel="noopener" class="contact-link linkedin-link">
+            <span class="link-label" data-translate="contact_linkedin_label">LINKEDIN</span>
+            <span class="link-val">linkedin.com/in/rubensrainelli</span>
+          </a>
+        </div>
+      </div>
+      
+      <div class="modal-options" style="margin-top: 20px;">
+        <button class="modal-btn" onclick="closeContactModal()" data-translate="btn_disconnect">[ TERMINATE CONNECTION ]</button>
+      </div>
+    </div>
   </div>
 
   <!-- EULA & Multilingual Modal Overlay -->
@@ -234,7 +290,17 @@ L'uso, la copia, la modifica o la redistribuzione del Software implica l'accetta
         toast_decom: "Notice: This project is decommissioned/inactive.",
         modal_title: "PEFL LICENSE AGREEMENT",
         modal_text: "This projects index is governed by the Personal and Educational Free License (PEFL v1.0). Free for individuals, schools, and non-profits. Corporate/commercial use requires a written authorization and a fee.",
-        btn_accept: "[ ACCEPT TERMS & ENTER ]"
+        btn_accept: "[ ACCEPT TERMS & ENTER ]",
+        btn_contact_me: "[ CONTACT ME ]",
+        contact_modal_title: "SECURE COMMUNICATIONS CHANNEL",
+        contact_modal_subtitle: "DIRECT LINK ESTABLISHED",
+        contact_email_label: "EMAIL",
+        contact_telegram_label: "TELEGRAM",
+        contact_phone_label: "TELECOM",
+        contact_github_label: "GITHUB",
+        contact_linkedin_label: "LINKEDIN",
+        btn_disconnect: "[ TERMINATE CONNECTION ]",
+        btn_toggle_avatar: "[ SWAP SCANNER MODE ]"
       },
       it: {
         sys_status: "SYS_STATUS: ATTIVO",
@@ -253,7 +319,17 @@ L'uso, la copia, la modifica o la redistribuzione del Software implica l'accetta
         toast_decom: "Nota: Questo progetto è dismesso o non più attivo.",
         modal_title: "ACCETTAZIONE LICENZA PEFL",
         modal_text: "Questo indice dei progetti è regolato dalla licenza Personal and Educational Free License (PEFL v1.0). Gratuito per uso personale, didattico e non profit. L'uso aziendale/commerciale richiede autorizzazione scritta e pagamento di una fee.",
-        btn_accept: "[ ACCETTA I TERMINI ED ENTRA ]"
+        btn_accept: "[ ACCETTA I TERMINI ED ENTRA ]",
+        btn_contact_me: "[ CONTATTAMI ]",
+        contact_modal_title: "CANALE DI COMUNICAZIONE SICURO",
+        contact_modal_subtitle: "COLLEGAMENTO DIRETTO STABILITO",
+        contact_email_label: "EMAIL",
+        contact_telegram_label: "TELEGRAM",
+        contact_phone_label: "TELECOM",
+        contact_github_label: "GITHUB",
+        contact_linkedin_label: "LINKEDIN",
+        btn_disconnect: "[ INTERROMPI CONNESSIONE ]",
+        btn_toggle_avatar: "[ CAMBIA SCANSIONE ]"
       }
     };
 
@@ -432,6 +508,37 @@ L'uso, la copia, la modifica o la redistribuzione del Software implica l'accetta
         
         container.appendChild(card);
       });
+    }
+
+    // Contact Modal Control Functions
+    let avatarMode = 'cyber'; // 'cyber' | 'bad' | 'real'
+    function toggleAvatarMode() {
+      const img = document.getElementById('contact-avatar-img');
+      if (!img) return;
+      
+      if (avatarMode === 'cyber') {
+        img.src = 'images/RubensRainelli-bad.jpeg';
+        avatarMode = 'bad';
+      } else if (avatarMode === 'bad') {
+        img.src = 'images/RubensRainelli.jpg';
+        avatarMode = 'real';
+      } else {
+        img.src = 'images/RubensRainelli-Cyberpunk.png';
+        avatarMode = 'cyber';
+      }
+    }
+
+    // Modal view triggers
+    function openContactModal() {
+      document.getElementById('contact-modal').classList.add('active');
+    }
+
+    function closeContactModal() {
+      document.getElementById('contact-modal').classList.remove('active');
+      // Reset back to primary cyber image on close
+      const img = document.getElementById('contact-avatar-img');
+      if (img) img.src = 'images/RubensRainelli-Cyberpunk.png';
+      avatarMode = 'cyber';
     }
 
     // App Initialization
