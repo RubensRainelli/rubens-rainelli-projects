@@ -30,6 +30,21 @@
     "active": true
   },
   {
+  "id": "SmartCam",
+  "name": {
+    "it": "SmartCam",
+    "en": "SmartCam"
+  },
+  "description": {
+    "it": "Webcam virtuale studio AI in Rust e C++17 SIMD (AVX-512/AVX2/GPU) per Windows 11 e Linux AppImage: sfocatura e sfondo virtuale con 5-Point Face Tracker, Telo Verde, plugin fotocamera Smartphone HTTPS con modalità OLED 0% e avvio istantaneo a 0% CPU in inattività.",
+    "en": "Native Rust & C++17 SIMD (AVX-512/AVX2/GPU) AI studio virtual webcam for Windows 11 & Linux AppImage: real-time background blur and replacement with 5-Point Face Tracker, Chroma Key, HTTPS Smartphone camera plugin with 0% OLED saver, and 0% idle CPU wake-on-demand."
+  },
+  "image": "images/smartcam.svg",
+  "code_url": "https://github.com/RubensRainelli/SmartCam",
+  "live_url": "https://rubensrainelli.github.io/SmartCam",
+  "active": true
+  },
+  {
     "id": "linux-dependency-guide",
     "name": {
       "it": "Linux Dependency Guide",
