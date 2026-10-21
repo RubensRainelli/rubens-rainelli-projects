@@ -14,6 +14,21 @@
     "live_url": "https://rubensrainelli.github.io/pefl-license-spec",
     "active": true
   },
+    {
+    "id": "antigravity-mobile-manager",
+    "name": {
+      "it": "Antigravity Mobile Manager",
+      "en": "Antigravity Mobile Manager"
+    },
+    "description": {
+      "it": "Sistema di controllo remoto LAN e Hotspot PC (porta 8420) a zero dipendenze (Rust std) per gestire Google Antigravity da smartphone su Windows e Linux senza TeamViewer. Include Plugin ufficiale con hook PreToolUse/Stop, PWA Single Page Application e App Android nativa per notifiche in tempo reale, approvazione/modifica comandi, invio prompt e monitoraggio agenti/subagenti. Conforme a PEFL v1.0.",
+      "en": "Zero-dependency local LAN and PC Hotspot remote control system (port 8420, pure Rust std) to manage Google Antigravity from your smartphone on Windows and Linux without TeamViewer. Includes an official Plugin with PreToolUse/Stop hooks, a Single Page Application PWA, and a native Android App for real-time notifications, remote command approval/editing, prompt input, and live agent/subagent monitoring. Complies with PEFL v1.0."
+    },
+    "image": "images/antigravity-mobile-manager.svg",
+    "code_url": "https://github.com/RubensRainelli/antigravity-mobile-manager",
+    "live_url": "https://rubensrainelli.github.io/antigravity-mobile-manager",
+    "active": true
+  },
   {
     "id": "linux-dependency-guide",
     "name": {

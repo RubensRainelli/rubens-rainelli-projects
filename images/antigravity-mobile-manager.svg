@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250" width="100%" height="100%">
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="#0a0a0f"/>
+
+  <!-- Cyber Grid (50px cells) -->
+  <path d="M 0,50 L 400,50 M 0,100 L 400,100 M 0,150 L 400,150 M 0,200 L 400,200 M 50,0 L 50,250 M 100,0 L 100,250 M 150,0 L 150,250 M 200,0 L 200,250 M 250,0 L 250,250 M 300,0 L 300,250 M 350,0 L 350,250" stroke="#141424" stroke-width="1"/>
+
+  <!-- Glowing Filters -->
+  <defs>
+    <filter id="glow-cyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <filter id="glow-magenta" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <filter id="glow-yellow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- 45-Degree Circuit Board Traces -->
+  <g stroke="#00f0ff" stroke-width="1.5" fill="none" opacity="0.45">
+    <path d="M 165,85 L 195,85 L 210,70 L 245,70" filter="url(#glow-cyan)"/>
+    <circle cx="245" cy="70" r="3" fill="#00f0ff"/>
+    <path d="M 165,165 L 195,165 L 210,180 L 245,180"/>
+    <circle cx="165" cy="165" r="3" fill="#00f0ff"/>
+  </g>
+  <g stroke="#ff0055" stroke-width="1.5" fill="none" opacity="0.6">
+    <path d="M 165,125 L 245,125" stroke-dasharray="6 4" filter="url(#glow-magenta)"/>
+    <circle cx="205" cy="125" r="3.5" fill="#ff0055"/>
+  </g>
+
+  <!-- LEFT NODE: PC Host Antigravity (:8420) -->
+  <g transform="translate(26, 48)">
+    <!-- Angled Polygon Frame -->
+    <polygon points="0,0 132,0 140,8 140,140 8,140 0,132" fill="#0c0c16" stroke="#00f0ff" stroke-width="2" filter="url(#glow-cyan)"/>
+    <line x1="0" y1="22" x2="140" y2="22" stroke="#00f0ff" stroke-width="1.2"/>
+    <circle cx="12" cy="11" r="3.5" fill="#ff0055"/>
+    <circle cx="23" cy="11" r="3.5" fill="#fefe00"/>
+    <circle cx="34" cy="11" r="3.5" fill="#39ff14"/>
+    <text x="86" y="14" fill="#00f0ff" font-family="'Share Tech Mono', monospace" font-size="8.5" font-weight="bold" text-anchor="middle">PC_HOST :8420</text>
+
+    <!-- Terminal Agent Log & Hook Status -->
+    <text x="10" y="40" fill="#39ff14" font-family="'Share Tech Mono', monospace" font-size="8">&gt; AGY_AGENT: ACTIVE</text>
+    <text x="10" y="54" fill="#00f0ff" font-family="'Share Tech Mono', monospace" font-size="7.5">LAN: 192.168.1.120</text>
+    <text x="10" y="66" fill="#00f0ff" font-family="'Share Tech Mono', monospace" font-size="7.5">HOT: 192.168.137.1</text>
+
+    <!-- PreToolUse Hook Intercept Box -->
+    <rect x="8" y="78" width="124" height="34" fill="#14142a" stroke="#ff0055" stroke-width="1"/>
+    <text x="14" y="91" fill="#ff0055" font-family="'Share Tech Mono', monospace" font-size="7.5" font-weight="bold">! HOOK: PreToolUse</text>
+    <text x="14" y="103" fill="#ffffff" font-family="'Share Tech Mono', monospace" font-size="7">$ cargo test --release</text>
+
+    <!-- Blinking Waiting Cursor -->
+    <rect x="10" y="121" width="5" height="8" fill="#fefe00">
+      <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
+    </rect>
+    <text x="20" y="128" fill="#fefe00" font-family="'Share Tech Mono', monospace" font-size="7.5">AWAIT_MOBILE_ACK...</text>
+  </g>
+
+  <!-- CENTER: Wireless / SSE Stream Pulse -->
+  <g transform="translate(205, 110)">
+    <polygon points="-26,-14 26,-14 32,-8 32,8 -26,8 -32,2" fill="#0a0a14" stroke="#fefe00" stroke-width="1.2" filter="url(#glow-yellow)"/>
+    <text x="0" y="0" fill="#fefe00" font-family="'Share Tech Mono', monospace" font-size="8" font-weight="bold" text-anchor="middle">SSE_SYNC</text>
+  </g>
+
+  <!-- RIGHT NODE: Smartphone PWA / Android Remote Controller -->
+  <g transform="translate(248, 30)">
+    <!-- Tactical Smartphone Chassis -->
+    <polygon points="8,0 118,0 126,8 126,174 118,182 8,182 0,174 0,8" fill="#0c0c16" stroke="#ff0055" stroke-width="2" filter="url(#glow-magenta)"/>
+    <!-- Speaker Notch -->
+    <line x1="48" y1="9" x2="78" y2="9" stroke="#00f0ff" stroke-width="1.5"/>
+    <circle cx="38" cy="9" r="2" fill="#39ff14"/>
+
+    <!-- Mobile Topbar -->
+    <rect x="8" y="18" width="110" height="18" fill="#121226" stroke="#00f0ff" stroke-width="0.8"/>
+    <circle cx="16" cy="27" r="3" fill="#39ff14"/>
+    <text x="66" y="30" fill="#00f0ff" font-family="'Share Tech Mono', monospace" font-size="7.5" font-weight="bold" text-anchor="middle">AGY_MOBILE_MGR</text>
+
+    <!-- Notification / Command Approval Card -->
+    <rect x="8" y="42" width="110" height="60" fill="#161024" stroke="#ff0055" stroke-width="1"/>
+    <text x="14" y="54" fill="#fefe00" font-family="'Share Tech Mono', monospace" font-size="7.5" font-weight="bold">[!] CONFIRM_CMD</text>
+    <text x="14" y="66" fill="#ffffff" font-family="'Share Tech Mono', monospace" font-size="7">run_command:</text>
+    <text x="14" y="76" fill="#00f0ff" font-family="'Share Tech Mono', monospace" font-size="6.8">cargo test --release</text>
+
+    <!-- Action Buttons: APPROVE / DENY -->
+    <rect x="13" y="83" width="48" height="14" fill="#0d2818" stroke="#39ff14" stroke-width="1"/>
+    <text x="37" y="93" fill="#39ff14" font-family="'Share Tech Mono', monospace" font-size="7" font-weight="bold" text-anchor="middle">✓ ALLOW</text>
+
+    <rect x="65" y="83" width="48" height="14" fill="#2a0d18" stroke="#ff0055" stroke-width="1"/>
+    <text x="89" y="93" fill="#ff0055" font-family="'Share Tech Mono', monospace" font-size="7" font-weight="bold" text-anchor="middle">✕ DENY</text>
+
+    <!-- Live Agent / Subagent Status Card -->
+    <rect x="8" y="108" width="110" height="32" fill="#0d1b2a" stroke="#00f0ff" stroke-width="0.8"/>
+    <text x="14" y="119" fill="#00f0ff" font-family="'Share Tech Mono', monospace" font-size="7" font-weight="bold">AGENT #01 [SUBAGENT]</text>
+    <text x="14" y="131" fill="#39ff14" font-family="'Share Tech Mono', monospace" font-size="6.8">STATUS: RUNNING_TASK</text>
+
+    <!-- Remote Prompt Input Bar -->
+    <rect x="8" y="146" width="110" height="22" fill="#080812" stroke="#00f0ff" stroke-width="1"/>
+    <text x="14" y="160" fill="#00f0ff" font-family="'Share Tech Mono', monospace" font-size="7">&gt; SEND_PROMPT...</text>
+    <polygon points="104,151 114,157 104,163" fill="#00f0ff"/>
+  </g>
+
+  <!-- Bottom HUD Status Label -->
+  <text x="200" y="234" fill="#39ff14" font-family="'Share Tech Mono', monospace" font-size="9" text-anchor="middle" letter-spacing="1.5">[LAN_BRIDGE: PORT_8420 // PWA_AND_ANDROID: ONLINE]</text>
+
+  <!-- HUD Corner Brackets -->
+  <path d="M 10,22 L 10,10 L 22,10" fill="none" stroke="#00f0ff" stroke-width="2"/>
+  <path d="M 390,22 L 390,10 L 378,10" fill="none" stroke="#00f0ff" stroke-width="2"/>
+  <path d="M 10,228 L 10,240 L 22,240" fill="none" stroke="#00f0ff" stroke-width="2"/>
+  <path d="M 390,228 L 390,240 L 378,240" fill="none" stroke="#00f0ff" stroke-width="2"/>
+</svg>
