@@ -14,7 +14,22 @@
     "live_url": "https://rubensrainelli.github.io/pefl-license-spec",
     "active": true
   },
-    {
+  {
+    "id": "telegram-harness-manager",
+    "name": {
+      "it": "Telegram Harness Manager",
+      "en": "Telegram Harness Manager"
+    },
+    "description": {
+      "it": "Skill universale multi-harness, Bot Telegram, Bridge Serverless (tgcloud V8) e Mini App a zero dipendenze (Rust std) per gestire Google Antigravity, Claude Code, OpenCode, DeepSeek e Aider da remoto su Telegram. Supporta Forum Topic multi-conversazione per progetto, selezione di Modello/Thinking/Permessi, notifiche Output-First con Thinking e Git Diff on-demand, opzioni multiple interattive e gestione collaboratori/gruppi (Viewer, Proposer con approvazione Owner, Executor). Conforme a PEFL v1.0.",
+      "en": "Universal multi-harness skill, Telegram Bot, Serverless Bridge (tgcloud V8), and zero-dependency daemon (pure Rust std) to manage Google Antigravity, Claude Code, OpenCode, DeepSeek, and Aider remotely on Telegram. Features per-project multi-conversation Forum Topics, Model/Thinking/Permission controls, Output-First notifications with on-demand Thinking and Git Diffs, interactive single/multi-select options, and team collaborator ACLs (Viewer, Proposer with Owner approval, Executor). Complies with PEFL v1.0."
+    },
+    "image": "images/telegram-harness-manager.svg",
+    "code_url": "https://github.com/RubensRainelli/telegram-harness-manager",
+    "live_url": "https://rubensrainelli.github.io/telegram-harness-manager",
+    "active": true
+  },
+  {
     "id": "antigravity-mobile-manager",
     "name": {
       "it": "Antigravity Mobile Manager",
@@ -30,19 +45,19 @@
     "active": true
   },
   {
-  "id": "SmartCam",
-  "name": {
-    "it": "SmartCam",
-    "en": "SmartCam"
-  },
-  "description": {
-    "it": "Webcam virtuale studio AI in Rust e C++17 SIMD (AVX-512/AVX2/GPU) per Windows 11 e Linux AppImage: sfocatura e sfondo virtuale con 5-Point Face Tracker, Telo Verde, plugin fotocamera Smartphone HTTPS con modalità OLED 0% e avvio istantaneo a 0% CPU in inattività.",
-    "en": "Native Rust & C++17 SIMD (AVX-512/AVX2/GPU) AI studio virtual webcam for Windows 11 & Linux AppImage: real-time background blur and replacement with 5-Point Face Tracker, Chroma Key, HTTPS Smartphone camera plugin with 0% OLED saver, and 0% idle CPU wake-on-demand."
-  },
-  "image": "images/smartcam.svg",
-  "code_url": "https://github.com/RubensRainelli/SmartCam",
-  "live_url": "https://rubensrainelli.github.io/SmartCam",
-  "active": true
+    "id": "SmartCam",
+    "name": {
+      "it": "SmartCam",
+      "en": "SmartCam"
+    },
+    "description": {
+      "it": "Webcam virtuale studio AI in Rust e C++17 SIMD (AVX-512/AVX2/GPU) per Windows 11 e Linux AppImage: sfocatura e sfondo virtuale con 5-Point Face Tracker, Telo Verde, plugin fotocamera Smartphone HTTPS con modalità OLED 0% e avvio istantaneo a 0% CPU in inattività.",
+      "en": "Native Rust & C++17 SIMD (AVX-512/AVX2/GPU) AI studio virtual webcam for Windows 11 & Linux AppImage: real-time background blur and replacement with 5-Point Face Tracker, Chroma Key, HTTPS Smartphone camera plugin with 0% OLED saver, and 0% idle CPU wake-on-demand."
+    },
+    "image": "images/smartcam.svg",
+    "code_url": "https://github.com/RubensRainelli/SmartCam",
+    "live_url": "https://rubensrainelli.github.io/SmartCam",
+    "active": true
   },
   {
     "id": "linux-dependency-guide",
